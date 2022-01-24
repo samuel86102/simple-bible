@@ -86,14 +86,12 @@
 		bookElement.addEventListener("change", selectBook);
 		function selectBook() {
 
-			for(var i=0;i<preLength;i+=1){
-				//chapterElement.remove(i);
-				chapterElement.removeChild(chapterElement.childNodes[i]);
+			for(var i=bookLength-1 ;i>=0;i-=1){
+				chapterElement.remove(i);
 			}
 
 
 			bookIndex = bookElement.selectedIndex;
-			console.log(bookIndex);
 			bookLength = book[bookIndex].childNodes.length
 			for (var i = 0; i< bookLength; i+=1) {
 				var opt = document.createElement('option');
@@ -110,19 +108,16 @@
 		function selectChapter(){
 			chapterIndex = chapterElement.selectedIndex;
 			chapterLength = book[bookIndex].childNodes[chapterIndex].childNodes.length;
-			console.log(chapterIndex);
 		}
 
 
 		var btnElement = document.getElementById("btn");
 		btnElement.addEventListener("click", clickBtn);
 		function clickBtn(){
-				var txt="";
-				for (var i=0; i<chapterLength ;i+=1){
-							txt += i+1 + " " + bible.childNodes[bookIndex].childNodes[chapterIndex].childNodes[i].textContent + "<br>";
-							console.log(txt);
-				}
-			console.log(txt);
+			var txt="";
+			for (var i=0; i<chapterLength ;i+=1){
+				txt += i+1 + " " + bible.childNodes[bookIndex].childNodes[chapterIndex].childNodes[i].textContent + "<br>";
+			}
 			document.getElementById("verse").innerHTML = txt;
 		}
 

@@ -9,16 +9,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <title>Simple Bible</title>
-	<style>
-
-	.dark-mode {
-	  background-color: black;
-	  color: white;
-	}
-	</style>
-
-
-
   </head>
   <body>
 	<div class="container p-5">
@@ -39,10 +29,8 @@
 		</select>
 	</div>
 
-	<div class="row m-3 shadow">
-		<!--
-<button onclick="modeToggle()">Toggle dark mode</button>
-		-->
+	<div class="row m-3">
+
 		<button id="btn" class="btn btn-primary">GO</button>
 	</div>
 
@@ -50,16 +38,18 @@
 
 <div class="card shadow p-3 mb-5 rounded">
   <div class="card-body">
-    <h4 class="card-title">Verse</h4>
+    <h4 class="card-title">Card title</h4>
     <p class="card-text" id="verse"></p>
 
 
 
-<table class="table table-hover">
-<thead>
-	<tbody id="verse-tb">
-	</tbody>
-</thead>
+<table class="table">
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+    </tr>
+  </tbody>
 </table>
 
   </div>
@@ -141,21 +131,13 @@
 		btnElement.addEventListener("click", clickBtn);
 		function clickBtn(){
 			var txt="";
-			var tb = "";
-
 			for (var i=0; i<chapterLength ;i+=1){
-				//txt += i+1 + " " + bible.childNodes[bookIndex].childNodes[chapterIndex].childNodes[i].textContent + "<br>";
-						tb += '<tr><th scope="row">'+ (i+1) + '</th>' + '<td>' + bible.childNodes[bookIndex].childNodes[chapterIndex].childNodes[i].textContent + '</td></tr>';
+				txt += i+1 + " " + bible.childNodes[bookIndex].childNodes[chapterIndex].childNodes[i].textContent + "<br>";
 			}
-			document.getElementById("verse-tb").innerHTML = tb;
+			document.getElementById("verse").innerHTML = txt;
 		}
 
-function modeToggle() {
-   var element = document.body;
-   element.classList.toggle("dark-mode");
-   var card = getElementById("verse-tb");
-   element.classList.toggle("dark-mode");
-}
+
 
 	</script>
 

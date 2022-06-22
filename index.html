@@ -18,7 +18,6 @@
 	</style>
 
 
-
   </head>
   <body>
 	<div class="container p-5">
@@ -26,26 +25,21 @@
     <h1>Simple Bible</h1>
 	</div>
 	<div class="row m-3">
-
-		<label for="book">Choose Book:</label>
-		<select name="book" id="book">
-		</select>
+			<label for="book">Choose Book:</label>
+			<select name="book" id="book_select">
+			</select>
 	</div>
 
-	<div class="row m-3">
-
-		<label for="chapter">Choose Chapter:</label>
-		<select name="chapter" id="chapter">
-		</select>
+	<div class="row mx-3 mb-4">
+			<label for="chapter">Choose Chapter:</label>
+			<select name="chapter" id="chapter_select">
+			</select>
 	</div>
-
+<!--
 	<div class="row m-3 shadow">
-		<!--
-<button onclick="modeToggle()">Toggle dark mode</button>
-		-->
 		<button id="btn" class="btn btn-primary">GO</button>
 	</div>
-
+-->
 
 
 <div class="card shadow p-3 mb-5 rounded">
@@ -70,7 +64,6 @@
 
 	<script>
 
-		var bible,book;
 
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function() {
@@ -80,6 +73,9 @@
 		};
 		xmlhttp.open("GET", "zh_cuv.xml", true);
 		xmlhttp.send();
+
+		var bible,book;
+		var bookSelect = document.getElementById('book_select');
 
 		function myFunction(xml) {
 
@@ -92,9 +88,8 @@
 			//document.getElementById("demo").innerHTML = txt;
 
 			book = bible.childNodes;
-			var bookSelect = document.getElementById('book');
 
-
+			// create book option menu
 			for (var i = 0; i<= book.length; i+=1) {
 				var opt = document.createElement('option');
 				book_name = book[i].getAttribute('n');
@@ -104,42 +99,46 @@
 			}
 		}
 
-		var bookElement = document.getElementById("book");
-		var chapterElement = document.getElementById('chapter');
+		var chapterSelect = document.getElementById('chapter_select');
+
 		var bookIndex,chapterIndex;
 		var bookLength,chapterLength;
 		var preLength;
-		bookElement.addEventListener("change", selectBook);
+		bookSelect.addEventListener("change", selectBook);
+		// select Book
 		function selectBook() {
 
+			// clear Chapters
 			for(var i=bookLength-1 ;i>=0;i-=1){
-				chapterElement.remove(i);
+				chapterSelect.remove(i);
 			}
 
-
-			bookIndex = bookElement.selectedIndex;
+			bookIndex = bookSelect.selectedIndex;
 			bookLength = book[bookIndex].childNodes.length
 			for (var i = 0; i< bookLength; i+=1) {
 				var opt = document.createElement('option');
 				opt.value = i+1;
 				opt.innerHTML = i+1;
-				chapterElement.appendChild(opt);
+				chapterSelect.appendChild(opt);
 			}
-			preLength = bookLength;
+			//preLength = bookLength;
 
 
 		}
 
-		chapterElement.addEventListener("change", selectChapter);
+		chapterSelect.addEventListener("change", selectChapter);
+
 		function selectChapter(){
-			chapterIndex = chapterElement.selectedIndex;
+			chapterIndex = chapterSelect.selectedIndex;
 			chapterLength = book[bookIndex].childNodes[chapterIndex].childNodes.length;
+			showVerse();
 		}
 
 
 		var btnElement = document.getElementById("btn");
-		btnElement.addEventListener("click", clickBtn);
-		function clickBtn(){
+		btnElement.addEventListener("click", showVerse);
+
+		function showVerse(){
 			var txt="";
 			var tb = "";
 
@@ -149,13 +148,14 @@
 			}
 			document.getElementById("verse-tb").innerHTML = tb;
 		}
-
-function modeToggle() {
-   var element = document.body;
-   element.classList.toggle("dark-mode");
-   var card = getElementById("verse-tb");
-   element.classList.toggle("dark-mode");
-}
+		/*
+		function modeToggle() {
+		   var element = document.body;
+		   element.classList.toggle("dark-mode");
+		   var card = getElementById("verse-tb");
+		   element.classList.toggle("dark-mode");
+		}
+	   */
 
 	</script>
 

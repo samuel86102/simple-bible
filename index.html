@@ -17,6 +17,11 @@
   </head>
 
 <style>
+
+
+
+
+
 	html.dark-mode {
 	  filter: invert(90%);
 	  img {
@@ -25,7 +30,14 @@
 	}
 	body{
 		font-family: 'Noto Sans TC', sans-serif;
+
+		    opacity: 1;
+    transition-duration: 1.5s;
+    transition-property: opacity;
 	}
+	  
+
+
 
 </style>
 
@@ -92,6 +104,14 @@
 
   </body>
 	<script>
+	 document.body.className = 'fade';
+	document.addEventListener("DOMContentLoaded", () => {
+      window.setTimeout(function() {
+        document.body.className = '';
+      }, 230);
+    });
+
+
 
 
 		var xmlhttp = new XMLHttpRequest();

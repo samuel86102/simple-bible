@@ -1,1 +1,1 @@
-# Simle Bible - An XML-based Bible Reading Webpage
+# Simple Bible - An XML-based Bible Reading Webpage

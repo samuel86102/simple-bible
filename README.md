@@ -1,1 +1,1 @@
-# vinode Bible - A XML-based Bible Reading Webpage
+# Simle Bible - An XML-based Bible Reading Webpage
